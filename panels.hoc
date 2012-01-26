@@ -1,0 +1,71 @@
+// *** Run Panel ***
+
+		t = 0
+		dt = 0.1
+		steps_per_ms = 10
+		screen_update_invl = 0.05
+		realtime = 0
+		nabl = 0
+		cabl = 0
+		campinc = 0
+
+objref rp
+rp = new HBox()
+rp.intercept(1)
+	xpanel("")
+		xbutton("Init & Run","run()")
+		xbutton("Stop","stoprun=1")
+		xlabel("")
+		xstatebutton("Block Na",&nabl,"blockna()")
+		xlabel("")
+		xstatebutton("Block CaL",&cabl,"blockcal()")
+		xlabel("")
+		xstatebutton("Incr. cAMP",&campinc,"inccamp()")
+	xpanel()
+	xpanel("")
+		xvalue("t","t", 2 )
+		xvalue("Real Time","realtime", 0,"", 0, 1 )
+		xlabel("")
+		xvalue("gNa","soma.gbar_nahh",1)
+		xlabel("")
+		xvalue("gCaL","soma.gbar_cal_dop",1)
+		xlabel("")
+		xvalue("[cAMP]","soma.ai_hcn_siegelbaum",1)
+	xpanel()
+rp.intercept(0)
+rp.map("Run Panel",0,300,300,200)
+
+
+
+// *** BLOCKNA() ***
+proc blockna() {
+	if (soma.gbar_nahh == 0.01) {
+		nabl = 1
+		soma.gbar_nahh = 0
+	} else {
+		nabl = 0
+		soma.gbar_nahh = 0.01
+	}
+}
+
+// *** BLOCKCA() ***
+proc blockcal() {
+	if (soma.gbar_cal_dop == 5e-05) {
+		cabl = 1
+		soma.gbar_cal_dop = 0
+	} else {
+		cabl = 0
+		soma.gbar_cal_dop = 5e-05
+	}
+}
+
+// *** INCCAMP() ***
+proc inccamp() {
+	if (soma.ai_hcn_siegelbaum == 1e-05) {
+		campinc = 1
+		soma.ai_hcn_siegelbaum = 0.001
+	} else {
+		campinc = 0
+		soma.ai_hcn_siegelbaum = 1e-05
+	}
+}

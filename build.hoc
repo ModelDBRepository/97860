@@ -1,0 +1,53 @@
+create soma
+access soma
+
+v_init = -68
+tstop = 10000
+celsius = 35
+forall Ra = 70
+
+soma {
+    L = 15
+    diam = 15
+    insert nahh
+    	gbar_nahh = 0.01
+    insert kv1_gp
+    	gbar_kv1_gp = 0
+    insert kv2_hh
+    	gbar_kv2_hh = 0
+    insert kv2_simplehh
+    	gbar_kv2_simplehh = 0.00015
+    insert kv4hh
+    	gbar_kv4hh = 0
+    insert kcnq_hh
+    	gbar_kcnq_hh = 7e-07
+    insert kir2_dop
+    	gbar_kir2_dop = 0
+	insert sk_dop
+		gbar_sk_dop = 5e-06
+	insert hcn_siegelbaum
+		gbar_hcn_siegelbaum = 7e-05
+		ehcn_hcn_siegelbaum = -10
+	insert cal_dop
+		gbar_cal_dop = 5e-05
+	insert cap_dop
+		gbar_cap_dop = 2.5e-05
+    insert leak_dop
+    	gbar_leak_dop = 5e-06
+    	e_leak_dop = -45
+    insert CaDiffuse3
+}
+
+ek = -90
+
+cvode.active(0)
+
+cai_init = 5e-05	// (mM)
+
+proc init() {
+	finitialize(v_init)
+	soma.cai = cai_init
+}
+
+Pmax_CaDiffuse3 = 125
+TotalBuffer_CaDiffuse3 = 0.0003

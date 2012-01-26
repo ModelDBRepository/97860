@@ -1,0 +1,15 @@
+objref graphbox
+objref g1
+
+graphbox = new VBox()
+graphbox.intercept(1)
+
+	g1 = new Graph(0)
+	g1.size(0,10000,-80,40)
+	g1.view(0,-80,10000,120,200,500,300,200)
+	graphList[0].append(g1)
+	g1.save_name("graphList[0].")
+	g1.addexpr("soma.v(0.5)", 2,1,0.8,0.9,2)
+
+graphbox.intercept(0)
+graphbox.map("Figure S5",500,300,400,175)
