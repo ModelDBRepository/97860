@@ -40,6 +40,4 @@ http://www.neuron.yale.edu/phpbb/viewtopic.php?f=28&t=592
 
 20140306 kv4hh.mod updated to work with a new version of NEURON that carefully checks the number of arguments in function calls with function definition. A rates() function call was updated to rates(v).
 
----
-
-2025-05-30: Standardized to Markdown
+20250530 Standardized to Markdown
